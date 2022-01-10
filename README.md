@@ -1,4 +1,4 @@
-## GSVApy: A Python wrapper for the GSVA algorithm
+## GSVApy: A Python wrapper for the GSVA algorithm ...
 
 This is a Python script for running the [Gene Set Variation Analysis (GSVA) algorithm](https://doi.org/10.1186/1471-2105-14-7). Specifically, it is a wrapper around the [GSVA R package](https://www.bioconductor.org/packages/release/bioc/html/GSVA.html).
 
