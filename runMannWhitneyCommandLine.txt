@@ -11,5 +11,6 @@ out_dir|Top level directory that holds all the results|1|1|1|0|0|||
 in_file|input file of gene expression|0|0|0|1|1|||
 cond1_names|header names of condition 1 samples (comma-separated)|0|0|0|0|0|||
 cond2_names|header names of condition 1 samples (comma-separated)|0|0|0|0|0|||
--show_w|show wilks p-value 1 or 0|0|0|0|0|0|--show_wilks|BOOLEANFALSE|
--dbg|debug 1 or 0|0|0|0|0|0|--debug|BOOLEANFALSE|
+-paired|paired data|0|0|0|0|0|--paired_data|BOOLEANFALSE|
+-show_w|show wilks p-value|0|0|0|0|0|--show_wilks|BOOLEANFALSE|
+-dbg|debug|0|0|0|0|0|--debug|BOOLEANFALSE|
