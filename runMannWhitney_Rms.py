@@ -78,7 +78,8 @@ def main():
             stat_dict[row[0]] = stat_obj.statistic
             pval_dict[row[0]] = stat_obj.pvalue
             pval_list.append(stat_obj.pvalue)
-            #print ("mw.pvalue:", mw.pvalue)
+            #print ("pvalue:", stat_obj.pvalue)
+            
             #out_mw.write(f"{row[0]}\t{mw.statistic}\t{mw.pvalue}\n")
            
         rej, adj_pvals, _, _ = sm.multipletests(pval_list, alpha=0.05, method='fdr_bh')      
@@ -86,7 +87,7 @@ def main():
             #print("i:", i, " adjpval:", adj_pvals[i])
             adj_pval_dict[term] = adj_pvals[i]
         for term in stat_dict.keys():
-            if pval_dict[term] < 0.05:
+            if pval_dict[term] < 1.1:  #  Used to be < 0.05, now, let's let them all through.
                 out_mw.write(f"{term}\t{stat_dict[term]}\t{pval_dict[term]}\t{adj_pval_dict[term]}\n")
                         
     cmdlogtime.end(logfile, start_time_secs)      
