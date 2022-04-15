@@ -11,9 +11,8 @@ import pdb
 import statsmodels.stats.multitest as sm
 
 COMMAND_LINE_DEF_FILE = "./runMannWhitneyCommandLine.txt"
-WRITE_MSGS_TO_STDOUT = 1
 def main():
-    (start_time_secs, pretty_start_time, my_args, logfile) = cmdlogtime.begin(COMMAND_LINE_DEF_FILE, WRITE_MSGS_TO_STDOUT)
+    (start_time_secs, pretty_start_time, my_args, logfile) = cmdlogtime.begin(COMMAND_LINE_DEF_FILE)
     
     in_file = my_args["in_file"]
     paired_data = my_args["paired_data"]
@@ -90,7 +89,7 @@ def main():
             if pval_dict[term] < 1.1:  #  Used to be < 0.05, now, let's let them all through.
                 out_mw.write(f"{term}\t{stat_dict[term]}\t{pval_dict[term]}\t{adj_pval_dict[term]}\n")
                         
-    cmdlogtime.end(logfile, start_time_secs, WRITE_MSGS_TO_STDOUT)      
+    cmdlogtime.end(logfile, start_time_secs)      
 
 if __name__ == "__main__":
     main()
