@@ -10,9 +10,8 @@ import pdb
 #import rmslogging
 
 COMMAND_LINE_DEF_FILE = "./trimGeneSetsCommandLine.txt"
-
 def main():
-    (start_time_secs, pretty_start_time, my_args, logfile) = cmdlogtime.begin(COMMAND_LINE_DEF_FILE, sys.argv[0])
+    (start_time_secs, pretty_start_time, my_args, logfile) = cmdlogtime.begin(COMMAND_LINE_DEF_FILE)
     #(start_time_secs, pretty_start_time) = rmstime.get_time_and_pretty_time()
     #print("pretty_start:", pretty_start_time)
     
