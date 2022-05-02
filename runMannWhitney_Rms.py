@@ -13,7 +13,6 @@ import statsmodels.stats.multitest as sm
 COMMAND_LINE_DEF_FILE = "./runMannWhitneyCommandLine.txt"
 def main():
     (start_time_secs, pretty_start_time, my_args, logfile) = cmdlogtime.begin(COMMAND_LINE_DEF_FILE)
-    
     in_file = my_args["in_file"]
     paired_data = my_args["paired_data"]
     
@@ -25,8 +24,7 @@ def main():
     out_wilks = os.path.join(my_args["out_dir"], "output_wilks.tsv")
     cond1_names = my_args["cond1_names"]
     cond2_names = my_args["cond2_names"]
-    
-    
+      
     cond1_names = cond1_names.split(",")
     cond2_names = cond2_names.split(",")
     for cond in cond1_names:
@@ -77,13 +75,9 @@ def main():
             stat_dict[row[0]] = stat_obj.statistic
             pval_dict[row[0]] = stat_obj.pvalue
             pval_list.append(stat_obj.pvalue)
-            #print ("pvalue:", stat_obj.pvalue)
-            
-            #out_mw.write(f"{row[0]}\t{mw.statistic}\t{mw.pvalue}\n")
            
         rej, adj_pvals, _, _ = sm.multipletests(pval_list, alpha=0.05, method='fdr_bh')      
         for i, term in enumerate(stat_dict.keys()): 
-            #print("i:", i, " adjpval:", adj_pvals[i])
             adj_pval_dict[term] = adj_pvals[i]
         for term in stat_dict.keys():
             if pval_dict[term] < 1.1:  #  Used to be < 0.05, now, let's let them all through.

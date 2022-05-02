@@ -1,13 +1,12 @@
 Here are some example command lines:
 ---- RUN TRIM GENE SETS -------------------------------------  
-  (base) F5KN104YF9VN:GSVApy Ron$ python trimGeneSets.py ../../GSVA_Tattersall/outTrimmedGeneSets/ ../../GSVA_Tattersall/RonsFilteredGeneListBasedOnMaxLog2TPM_#samplesZero_andCoeffOfVariation/all.Tattersall_exp2_l2tpmSomeFiltrationAttempts.txt   ../../GSVA_Tattersall/gene_sets/c5.bp.v7.1.symbols.gmt -num_genes_req=3 -num_top_genes=200
-pretty_start: 2022_01_10_09_26_00
-theoutdir: /Users/Ron/Desktop/GSVA_Tattersall/outTrimmedGeneSets/2022_01_10_09_26_00
-logfile:  /Users/Ron/Desktop/GSVA_Tattersall/outTrimmedGeneSets/2022_01_10_09_26_00/log_2022_01_10_09_26_00_.txt
+  (base) F5KN104YF9VN:GSVApy  python ./trimGeneSets.py ../../ActiveCollaborations/Tattersall/GSVA_Tattersall/outTrimmedGeneSets/ ../../ActiveCollaborations/Tattersall/GSVA_Tattersall/RonsFilteredGeneListBasedOnMaxLog2TPM_#samplesZero_andCoeffOfVariation/all.Tattersall_exp2_l2tpmSomeFiltrationAttempts.txt   ../../ActiveCollaborations/Tattersall/GSVA_Tattersall/gene_sets/c5.bp.v7.1.symbols.gmt -num_genes_req=3 -num_top_genes=200
+pretty_start:  2022_05_02_13_18_22
+outdir:  /Users/Ron/Desktop/ActiveCollaborations/Tattersall/GSVA_Tattersall/outTrimmedGeneSets/2022_05_02_13_18_22
 All done. Total elapsed time: 0.0 seconds.
 
 ---- RUN GSVA -------------------------------------
-(base) F5KN104YF9VN:GSVApy Ron$ python run_gsva.py ../../GSVA_Tattersall/GSVA_input/all.Tattersall_exp2_l2tpmJustVapePostVsPreSamplesForGSVA.txt ../../GSVA_Tattersall/outTrimmedGeneSets/2022_01_05_16_10_43/output_genesets.tsv -o ../../GSVA_Tattersall/GSVA_output/tattersallVapePostVsPre_trimmedGeneSet_200gene10Required_v2_GSVA.tsv
+(base) F5KN104YF9VN:GSVApy python run_gsva.py ../../ActiveCollaborations/Tattersall/GSVA_Tattersall/GSVA_input/all.Tattersall_exp2_l2tpmJustVapePostVsPreSamplesForGSVA.txt ../../ActiveCollaborations/Tattersall/GSVA_Tattersall/outTrimmedGeneSets/2022_01_05_16_10_43/output_genesets.tsv -o ../../ActiveCollaborations/Tattersall/GSVA_Tattersall/GSVA_output/tattersallVapePostVsPre_trimmedGeneSet_200gene3Required_v3_GSVA.tsv 
 Warning! No distribution was specified (see the '--distribution' flag). Using 'Guassian' by default.
 Estimating GSVA scores for 118 gene sets.
 Estimating ECDFs with Gaussian kernels
@@ -15,12 +14,9 @@ Estimating ECDFs with Gaussian kernels
   
   
 ---- RUN MANN WHITNEY -------------------------------------
- (base) F5KN104YF9VN:GSVApy Ron$ python  runMannWhitney_Rms.py ../../GSVA_Tattersall/out_mann_whitney/ ../../GSVA_Tattersall/GSVA_output/tattersallVapePostVsPre_allGeneSets_GSVA.tsv  X090319_0121168,X090328_0121177,X090333_0121182,X090343_0121192,X090347_0121196,X090350_0121199,X090352_0121201,X090364_0121213 X090318_0121167,X090320_0121169,X090324_0121173,X090327_0121176,X090332_0121181,X090342_0121191,X090346_0121195,X090349_0121198,X090351_0121200,X090363_0121212  -show_w
-/Users/Ron/opt/anaconda3/lib/python3.7/site-packages/statsmodels/tools/_testing.py:19: FutureWarning: pandas.util.testing is deprecated. Use the functions in the public API at pandas.testing instead.
-  import pandas.util.testing as tm
-pretty_start: 2022_01_10_09_33_39
-theoutdir: /Users/Ron/Desktop/GSVA_Tattersall/out_mann_whitney/2022_01_10_09_33_39
-logfile:  /Users/Ron/Desktop/GSVA_Tattersall/out_mann_whitney/2022_01_10_09_33_39/log_2022_01_10_09_33_39_.txt
+ (base) F5KN104YF9VN:GSVApy Ron$ python  runMannWhitney_Rms.py ../../ActiveCollaborations/Tattersall/GSVA_Tattersall/out_mann_whitney/ ../../ActiveCollaborations/Tattersall/GSVA_Tattersall/GSVA_output/tattersallVapePostVsPre_allGeneSets_GSVA.tsv  X090319_0121168,X090328_0121177,X090333_0121182,X090343_0121192,X090347_0121196,X090350_0121199,X090352_0121201,X090364_0121213 X090318_0121167,X090320_0121169,X090324_0121173,X090327_0121176,X090332_0121181,X090342_0121191,X090346_0121195,X090349_0121198,X090351_0121200,X090363_0121212  -show_w
+pretty_start:  2022_05_02_13_27_27
+outdir:  /Users/Ron/Desktop/ActiveCollaborations/Tattersall/GSVA_Tattersall/out_mann_whitney/2022_05_02_13_27_27
 cond1: X090319_0121168
 cond1: X090328_0121177
 cond1: X090333_0121182
@@ -39,14 +35,14 @@ cond2: X090346_0121195
 cond2: X090349_0121198
 cond2: X090351_0121200
 cond2: X090363_0121212
-                                      Unnamed: 0  X090319_0121168  X090328_0121177  X090333_0121182  ...  X090346_0121195  X090349_0121198  X090351_0121200  X090363_0121212
-0  GO_POSITIVE_REGULATION_OF_VIRAL_TRANSCRIPTION        -0.179812        -0.168682        -0.084987  ...         0.077555         0.129677         0.138406        -0.035629
-1                 GO_CARDIAC_CHAMBER_DEVELOPMENT         0.177578        -0.191089        -0.080921  ...        -0.030993         0.017860         0.113159        -0.280062
+                                      Unnamed: 0  ...  X090363_0121212
+0  GO_POSITIVE_REGULATION_OF_VIRAL_TRANSCRIPTION  ...        -0.035629
+1                 GO_CARDIAC_CHAMBER_DEVELOPMENT  ...        -0.280062
 
 [2 rows x 19 columns]
-All done. Total elapsed time: 66.0 seconds.
+All done. Total elapsed time: 17.0 seconds.
 
 
 
 
-See GSVA_Tattersall histories for more  example command lines
+See Histories_Commands/ for more  example command lines

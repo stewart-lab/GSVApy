@@ -1,0 +1,500 @@
+   92  ls -al
+   93  ls -al
+   94  ls -al
+   95  ls -al
+   96  ls -al
+   97  ls -al
+   98  ls -al
+   99  ls -al
+  100  ls -al
+  101  ls -al
+  102  ls -al
+  103  ls -al
+  104  ls out_gse_to_fastq*.txt
+  105  ls out_gse_to_fastq*.txt
+  106  ls -al
+  107  rm err*.txt
+  108  ls -al
+  109  ls -al
+  110  ls -al
+  111  ls -al
+  112  ls -al
+  113  rm out_gse*.txt
+  114  ls -al
+  115  rm err_gse*.txt
+  116  ls -al
+  117  ls -al
+  118  ls -al
+  119  ls -al
+  120  ls -al
+  121  ls -al
+  122  ls -al
+  123  more out_gse_to_fastqXXX108863.txt 
+  124  more out_gse_to_fastqXXX16529.txt 
+  125  more out_gse_to_fastqXXX376296.txt 
+  126  more out_gse_to_fastqXXX538415.txt 
+  127  more out_gse_to_fastqXXX738472.txt 
+  128  history > /Users/Ron/Desktop/HistoryGseToFastqLocal.txt
+  129  more /Users/Ron/Desktop/HistoryGseToFastqLocal.txt 
+  130  ssh ron@mir-36
+  131  cd Desktop/perlScripts/
+  132  perl ./findCommonGenesInTwoFiles.pl 
+  133  perl ./findCommonGenesInTwoFiles.pl -h 
+  134  perl ./findCommonGenesInTwoFiles.pl -help
+  135  perl ./findCommonGenesInTwoFiles.pl -infile1=../Chaisson_20201119_Rodent_combined_gene_duplications/NileRat/gencode.combined-with-position.tsv -infile2=../Chaisson_20201119_Rodent_combined_gene_duplications/MusMusculus/gencode.combined-with-position.tsv -iorc=c -col1f1=0 -col1f2=0 -col2f1=0 -col2f2=0 -outfile=../Chaisson_20201119_Rodent_combined_gene_duplications/dupInNileRatNotInMouse.tsv
+  136  perl ./findCommonGenesInTwoFiles.pl -infile1=../Chaisson_20201119_Rodent_combined_gene_duplications/dupInNileRatNotInMouse.tsv -infile2=../Chaisson_20201119_Rodent_combined_gene_duplications/RattusNorvegicus/gencode.combined-with-position.tsv -iorc=c -col1f1=0 -col1f2=0 -col2f1=0 -col2f2=0 -outfile=../Chaisson_20201119_Rodent_combined_gene_duplications/dupInNileRatNotDupInMouseNotDupInNorwayRat.tsv
+  137  cat ../Chaisson_20201119_Rodent_combined_gene_duplications/MusMusculus/gencode.combined-with-position.tsv ../Chaisson_20201119_Rodent_combined_gene_duplications/RattusNorvegicus/gencode.combined-with-position.tsv > ../Chaisson_20201119_Rodent_combined_gene_duplications/dupInMouseOrNorwayRat.tsv
+  138  perl ./findCommonGenesInTwoFiles.pl -infile1=../Chaisson_20201119_Rodent_combined_gene_duplications/dupInMouseOrNorwayRat.tsv -infile2=../Chaisson_20201119_Rodent_combined_gene_duplications/NileRat/gencode.combined-with-position.tsv -iorc=c -col1f1=0 -col1f2=0 -col2f1=0 -col2f2=0 -outfile=../Chaisson_20201119_Rodent_combined_gene_duplications/dupInMouseOrNorwayRatButNotDupInNileRat.tsv
+  139  cd Desktop/gseToFastq/
+  140  ls
+  141  cd out
+  142  ls
+  143  cd 28_Apr_2021_17_18_59/
+  144  ls
+  145  ls
+  146  fastq-dump SRR14306863.sra
+  147  fasterq-dump SRR14306863.sra 
+  148  ls -al
+  149  rm SRR14306863.sra 
+  150  fasterq-dump SRR14306863.sra 
+  151  fasterq-dump --help
+  152  fasterq-dump
+  153  fasterq-dump SRR14306863.sra 
+  154  ls -al
+  155  rm SRR14306863.fastq 
+  156  fasterq-dump SRR14306863.sra 
+  157  ls -al
+  158  vdb-validate SRR14306863.sra 
+  159  ls -al
+  160  vdb-validate SRR12304672.sra 
+  161  vdb-validate SRR14306863.sra 
+  162  vdb-validate SRR14306863munged.sra 
+  163  mkdir fq
+  164  mv *.fastq fq
+  165  ls -al
+  166  ls -al
+  167  rm x.sra 
+  168  ls -al fq
+  169  fastq-dump SRR14306863.sra 
+  170  ls -al
+  171  ls -al
+  172  pwd
+  173  ls -al
+  174  ls -al
+  175  rm SRR14306863*.fastq
+  176  ls -al
+  177  ls -al
+  178  rm SRR14306863_2.fastq 
+  179  rm SRR14306863_2.fastq 
+  180  ls -al
+  181  ls -al
+  182  rm SRR14306863*.fastq
+  183  ls -al
+  184  ls -al
+  185  ls -al
+  186  ls -al
+  187  ls -al
+  188  ls -al
+  189  pwd
+  190  ls -al
+  191  more log_28_Apr_2021_17_18_59_.txt 
+  192  ls -al
+  193  pwd
+  194  cd ..
+  195  ls
+  196  cd 29_Apr_2021_16_46_11/
+  197  ls
+  198  more log_29_Apr_2021_16_46_11_.txt 
+  199  pwd
+  200  ls
+  201  cd ..
+  202  ls
+  203  ls 29_Apr_2021_16_48_08/
+  204  cd 29_Apr_2021_16_48_08/
+  205  more log_29_Apr_2021_16_48_08_.txt 
+  206  cd ..
+  207  ls 
+  208  cd 28_Apr_2021_17_18_59/
+  209  ls -al
+  210  cd ..
+  211  ls -al
+  212  pyrsradb metadata SRP07520
+  213  pysradb metadata SRP07520
+  214  pysradb metadata SRP061377
+  215  ls -al
+  216  cd 28_Apr_2021_17_18_59/
+  217  ls -al
+  218  ls -al
+  219  cd 30_Apr_2021_08_59_24/
+  220  ls
+  221  more metadata.txt 
+  222  cd ..
+  223  ls
+  224  ls -al
+  225  ls -al
+  226  more metadata.txt 
+  227  cd 30_Apr_2021_09_07_22/
+  228  ls
+  229  cd ..
+  230  rm SRR14306863*.fastq
+  231  ls -al
+  232  ls -al
+  233  more metadata.txt 
+  234  ls -al
+  235  qls -al
+  236  ls -al
+  237  more metadata.txt 
+  238  ls -al
+  239  rm SRR14306863*.fastq
+  240  ls -al
+  241  ls -al
+  242  more log_30_Apr_2021_11_31_13_.txt 
+  243  more log_30_Apr_2021_11_38_31_.txt 
+  244  ls -al
+  245  more metadata.txt 
+  246  more log_30_Apr_2021_12_33_14_.txt 
+  247  ls -al
+  248  more log_30_Apr_2021_12_35_50_.txt 
+  249  ls -al
+  250  rm log_30*
+  251  ls -al
+  252  rm SRR14306863*.fastq
+  253  ls -al
+  254  ls -al
+  255  more log_30_Apr_2021_12_39_25_.txt 
+  256  ls -al
+  257  ls -al
+  258  ls -al
+  259  rm SRR14306863*.fastq
+  260  rm SRR14306863*.fastq
+  261  ls -al
+  262  ls -al
+  263  ls -al
+  264  rm SRR14306863*.fastq
+  265  ls -al
+  266  ls -al
+  267  ls -al
+  268  ls -al
+  269  ls -al
+  270  ls -al
+  271  ls -al
+  272  ls -al
+  273  ls -al
+  274  ls -al
+  275  ls -al
+  276  ls -al
+  277  ls -al
+  278  ls -al
+  279  ls -al
+  280  ls -al
+  281  ls -al
+  282  ls -al
+  283  more log_30_Apr_2021_13_00_37_.txt 
+  284  ls -al
+  285  ls -al
+  286  ls -al
+  287  ls -al
+  288  ls -al
+  289  rm SRR12304672*.fastq
+  290  ls -al
+  291  ls -al
+  292  ls -al
+  293  ls -al
+  294  ls -al
+  295  ls -al
+  296  ls -al
+  297  ls -al
+  298  ls -al
+  299  ls -al
+  300  rm SRR14306863_1.fastq 
+  301  ls -al
+  302  rm SRR12304673_1.fastq 
+  303  ls -al
+  304  ls -al
+  305  rm log_30_Apr_2021_12_*
+  306  rm log_30_Apr_2021_13 *
+  307  ls -al
+  308  pwd
+  309  ls
+  310  cd ..
+  311  ls
+  312  pwd
+  313  ls -al
+  314  cd ..
+  315  ls
+  316  cd out
+  317  ls
+  318  cd 30_Apr_2021_16_14_18/
+  319  ls -al
+  320  ls -al
+  321  ls -al
+  322  ls -al
+  323  ls -al
+  324  ls -al
+  325  ls -al
+  326  ls -al
+  327  ls -al
+  328  ls -al
+  329  ls -al
+  330  ls -al
+  331  ls -al
+  332  ls -al
+  333  ls -al
+  334  ls -al
+  335  ls -al
+  336  ls -al
+  337  ls -al
+  338  ls -al
+  339  ls -al
+  340  ls -al
+  341  ls -al
+  342  ls -al
+  343  ls -al
+  344  pwd
+  345  ls -al
+  346  rm SRR12304673_1.fastq 
+  347  ls -al
+  348  ls -al
+  349  rm SRR14306863_1.fastq 
+  350  ls -al
+  351  ls -al
+  352  ls -al
+  353  ls -al
+  354  ls -al
+  355  ls -al
+  356  ls -al
+  357  more SRR14289122.fastq 
+  358  more SRR14306863_1.fastq 
+  359  ls -al
+  360  more log_03_May_2021_10_17_48_.txt 
+  361  ls -al
+  362  mv SRR14289122.fastq SRR14289122x.fastq
+  363  ls -al
+  364  ls -al
+  365  ls -al
+  366  ls -al
+  367  mv SRR14306863_1.fastq SRR14306863_1x.fastq 
+  368  ls -al
+  369  mkdir hold
+  370  mv SRR14306863_1x.fastq hold
+  371  ls -al
+  372  mv SRR14289122x.fastq hold
+  373  ls hold
+  374  ls -al
+  375  ls hold
+  376  cp SRR14306863.sra  hold
+  377  ls -al
+  378  ls hold
+  379  mv SRR14306863_1.fastq SRR14306863_1y.fastq
+  380  ls -al
+  381  ls -al
+  382  ls -al
+  383  ls -al
+  384  rm SRR14306863_1.fastq 
+  385  ls -al
+  386  ls -al
+  387  cp hold/SRR14306863.sra .
+  388  mv SRR14289122.fastq hold
+  389  ls -al
+  390  ls -al
+  391  ls -al
+  392  ls -al
+  393  ls -al
+  394  pwd
+  395  ssh ron@mir-36
+  396  ssh ron@mir-36
+  397  ssh ron@mir-36
+  398  ssh ron@mir-36
+  399  ssh ron@mir-36
+  400  ssh ron@mir-36
+  401  ssh ron@mir-36
+  402  ssh ron@mir-36
+  403  ssh -L 5000:localhost:5000 mir-36
+  404  ssh -L 5000:localhost:5000 mir-36
+  405  ssh ron@mir-36
+  406  ssh ron@mir-36
+  407  ssh -L 5000:localhost:5000 ron@mir-36
+  408  ssh -L 5000:localhost:5000 ron@mir-36
+  409  ssh ron@mir-36
+  410  ssh ron@mir-36
+  411  ssh ron@mir-36
+  412  ssh ron@mir-36
+  413  ssh ron@mir-36
+  414  ssh ron@mir-36
+  415  ssh ron@mir-36
+  416  ssh ron@mir-36
+  417  ssh ron@mir-36
+  418  ssh ron@mir-36
+  419  ssh ron@mir-36
+  420  ssh ron@mir-36
+  421  ssh ron@mir-49
+  422  ssh ron@mir-36
+  423  ssh ron@mir-36
+  424  pwed
+  425  pwd
+  426  nslookup cnn.com
+  427  ifconfig
+  428  nslookup cnn.com
+  429  ssh ron@mir-36
+  430  ssh ron@mir-36
+  431  ssh ron@mir-36
+  432  wd
+  433  pwd
+  434  ssh ron@mir-36
+  435  ssh ron@mir-36
+  436  ssh ron@mir-49
+  437  ssh ron@mir-36
+  438  ssh ron@mir-36
+  439  ssh ron@mir-36
+  440  ssh ron@mir-36
+  441  ssh ron@mir-36
+  442  ./addColumnsFromFile2ToFile1.pl -help
+  443  ./addColumnsFromFile2ToFile1.pl -File1=../sortedTrimmedList_with_KMmarked.txt -file2=../KM_results_covid_vs_covidICUvsNonCovidICUuppp99TopGenesOnlyOnesWithAHit.txt -col1f1=1 -col1f2=0 -col2f1=1 -col2f2=0 -headerSuffix2=_kmhit
+  444  mv file1_file2.txt ../sortedTrimmedList_with_KMmarked2.txt
+  445  ./addColumnsFromFile2ToFile1.pl -File1=../sortedTrimmedList_withALLKMcooccurrences.txt -file2=../KM_results_covid_vs_covidICUvsNonCovidICUuppp99TopGenesOnlyOnesWithAHit.txt -col1f1=1 -col1f2=0 -col2f1=1 -col2f2=0 -headerSuffix2=_kmhit
+  446  mv file1_file2.txt ../sortedTrimmedList_withALLKMcooccurrences2.txt
+  447  ssh ron@mir-36
+  448  ssh ron@mir-36
+  449  ssh ron@mir-36
+  450  ssh ron@mir-36
+  451  ssh ron@mir-36
+  452  ssh ron@mir-36
+  453  ssh ron@mir-36
+  454  ssh ron@mir-36
+  455  ./findCommonGenesInTwoFiles.pl -help
+  456  ./findCommonGenesInTwoFiles.pl -infile1=../HGNC_gene_symbols_updated_geneInfoAdded_manuallyCurated.txt -infile2=../tf_list.txt -col1f1=0 -col1f2=0 -col2f1=0 -col2f2=0 -hasheader=0 -outfile=../tfs_with_synonyms.txt
+  457  ls -al ../
+  458  ./findCommonGenesInTwoFiles.pl -infile1=../tf_list.txt -infile2=../tfs_with_synonyms.txt -col1f1=0 -col1f2=0 -col2f1=0 -col2f2=0 -hasheader=0 -iorc=c  -outfile=../tfs_remaining_without_synonyms.txt
+  459  wc -l ../tf_list.txt
+  460  wc -l ../tfs_with_synonyms.txt 
+  461  wc -l ../tfs_remaining_without_synonyms.txt 
+  462  cat ../tfs_with_synonyms.txt ../tfs_remaining_without_synonyms.txt > ../tfs_with_synonymsAll2243.txt
+  463  ssh ron@mir-36
+  464  ssh ron@mir-36
+  465  ssh ron@mir-36
+  466  ssh ron@mir-36
+  467  ssh ron@mir-36
+  468  ssh ron@mir-36
+  469  ssh ron@mir-36
+  470  ssh ron@mir-36
+  471  ssh ron@mir-36
+  472  exit
+  473  ssh ron@mir-36
+  474  ssh rstewart@mir-36
+  475  ssh ron@mir-49
+  476  ssh ron@mir-exec-02.morgridge.net
+  477  ssh ron@mir-exec-02.morgridge.net
+  478  pwd
+  479  ssh ron@mir-49
+  480  exit
+  481  cd Desktop/
+  482  mkdir linRegTest
+  483  cd linRegTest/
+  484  pwd
+  485  ls
+  486  python advertising.py 
+  487  python advertising.py 
+  488  python advertising.py 
+  489  python advertising.py 
+  490  python advertising.py 
+  491  python advertising.py 
+  492  python advertising.py 
+  493  python advertising.py 
+  494  python advertising.py 
+  495  cd Desktop/NileRatDupGenes/
+  496  grep -i acnat2 *
+  497  cd ../DiabetesRelatedGenesKR/
+  498  grep -i acnat2 *
+  499  exit
+  500  ssh ron@mir-exec-02.morgridge.net
+  501  ssh rstewart@mir-exec-02.morgridge.net
+  502  ssh ron@mir-49
+  503  cd Desktop/biobert/
+  504  ls
+  505  cd biobert
+  506  cd
+  507  cd Desktop/GSVA/
+  508  pwd
+  509  cd GSVApy-master
+  510  ls
+  511  python run_gsva.py LX653_tumor_top_50.tsv gene_sets/c5.bp.v7.1.symbols.gmt -o LX653_tumor_top_50.GSVA.tsv -t
+  512  python run_gsva.py ./LX653_tumor_top_50.tsv gene_sets/c5.bp.v7.1.symbols.gmt -o ./output/LX653_tumor_top_50.GSVA.tsv -t
+  513  python -m  venv .
+  514  source bin/activate
+  515  pip install GSVA
+  516  pip install --upgrade pip
+  517  python run_gsva.py ./LX653_tumor_top_50.tsv gene_sets/c5.bp.v7.1.symbols.gmt -o ./output/LX653_tumor_top_50.GSVA.tsv -t
+  518  pip install rpy2
+  519  python run_gsva.py ./LX653_tumor_top_50.tsv gene_sets/c5.bp.v7.1.symbols.gmt -o ./output/LX653_tumor_top_50.GSVA.tsv -t
+  520  pip install GSVA
+  521  python run_gsva.py ./LX653_tumor_top_50.tsv gene_sets/c5.bp.v7.1.symbols.gmt -o ./output/LX653_tumor_top_50.GSVA.tsv -t
+  522  R
+  523  python run_gsva.py ./LX653_tumor_top_50.tsv gene_sets/c5.bp.v7.1.symbols.gmt -o ./output/LX653_tumor_top_50.GSVA.tsv -t
+  524  cd ..
+  525  ls
+  526  python runMannWhitney_Rms.py 
+  527  python runMannWhitney_Rms.py 
+  528  history | grep exprot
+  529  history | grep export
+  530  history
+  531  export PYTHONPATH=$PYTHONPATH:/Users/Ron/Desktop/pythonCode/rms_pkgs/
+  532    ls /Users/Ron/Desktop/pythonCode/rms_pkgs/
+  533  python runMannWhitney_Rms.py 
+  534  pwd
+  535  ls
+  536  mkdir out_mann_whitney
+  537  python runMannWhitney_Rms.py out_mann_whitney/ GSVApy-master/output/LX653_tumor_top_50.GSVA.tsv 
+  538  python runMannWhitney_Rms.py out_mann_whitney/ GSVApy-master/output/LX653_tumor_top_50.GSVA.tsv -cond1_names=biffle,baffle
+  539  python runMannWhitney_Rms.py out_mann_whitney/ GSVApy-master/output/LX653_tumor_top_50.GSVA.tsv -cond1names=biffle,baffle
+  540  python runMannWhitney_Rms.py out_mann_whitney/ GSVApy-master/output/LX653_tumor_top_50.GSVA.tsv -cond1names=biffle,baffle -cond2names=hiffle,haffle
+  541  python runMannWhitney_Rms.py out_mann_whitney/ GSVApy-master/output/LX653_tumor_top_50.GSVA.tsv -cond1names=biffle,baffle -cond2names=hiffle,haffle
+  542  python runMannWhitney_Rms.py out_mann_whitney/ GSVApy-master/output/LX653_tumor_top_50.GSVA.tsv biffle,baffle hiffle,haffle
+  543  python runMannWhitney_Rms.py out_mann_whitney/ GSVApy-master/output/LX653_tumor_top_50.GSVA.tsv biffle,baffle hiffle,haffle
+  544  python runMannWhitney_Rms.py out_mann_whitney/ GSVApy-master/output/LX653_tumor_top_50.GSVA.tsv biffle,baffle hiffle
+  545  python runMannWhitney_Rms.py out_mann_whitney/ GSVApy-master/output/LX653_tumor_top_50.GSVA.tsv biffle,baffle hiffle,haffle
+  546  python runMannWhitney_Rms.py out_mann_whitney/ GSVApy-master/output/LX653_tumor_top_50.GSVA.tsv biffle,baffle hiffle,haffle
+  547  python runMannWhitney_Rms.py out_mann_whitney/ GSVApy-master/output/LX653_tumor_top_50.GSVA.tsv biffle,baffle hiffle,haffle
+  548  python runMannWhitney_Rms.py out_mann_whitney/ GSVApy-master/output/LX653_tumor_top_50.GSVA.tsv biffle,baffle hiffle,haffle
+  549  python runMannWhitney_Rms.py out_mann_whitney/ GSVApy-master/output/LX653_tumor_top_50.GSVA.tsv biffle,baffle hiffle,haffle
+  550  python runMannWhitney_Rms.py out_mann_whitney/ GSVApy-master/output/LX653_tumor_top_50.GSVA.tsv biffle,baffle hiffle,haffle
+  551  pip install matplotlib
+  552  python runMannWhitney_Rms.py out_mann_whitney/ GSVApy-master/output/LX653_tumor_top_50.GSVA.tsv biffle,baffle hiffle,haffle
+  553  python runMannWhitney_Rms.py out_mann_whitney/ GSVApy-master/output/LX653_tumor_top_50.GSVA.tsv LX653_tumor_1,LX653_tumor_2 LX653_tumor_3,LX653_tumor_4
+  554  python runMannWhitney_Rms.py out_mann_whitney/ GSVApy-master/output/LX653_tumor_top_50.GSVA.tsv LX653_tumor_1,LX653_tumor_2 LX653_tumor_3,LX653_tumor_4
+  555  pip install scipy
+  556  python runMannWhitney_Rms.py out_mann_whitney/ GSVApy-master/output/LX653_tumor_top_50.GSVA.tsv LX653_tumor_1,LX653_tumor_2 LX653_tumor_3,LX653_tumor_4
+  557  python runMannWhitney_Rms.py out_mann_whitney/ GSVApy-master/output/LX653_tumor_top_50.GSVA.tsv LX653_tumor_1,LX653_tumor_2 LX653_tumor_3,LX653_tumor_4
+  558  python runMannWhitney_Rms.py out_mann_whitney/ GSVApy-master/output/LX653_tumor_top_50.GSVA.tsv LX653_tumor_1,LX653_tumor_2 LX653_tumor_3,LX653_tumor_4
+  559  python runMannWhitney_Rms.py out_mann_whitney/ GSVApy-master/output/LX653_tumor_top_50.GSVA.tsv LX653_tumor_1,LX653_tumor_2 LX653_tumor_3,LX653_tumor_4
+  560  python runMannWhitney_Rms.py out_mann_whitney/ GSVApy-master/output/LX653_tumor_top_50.GSVA.tsv LX653_tumor_1,LX653_tumor_2 LX653_tumor_3,LX653_tumor_4
+  561  python runMannWhitney_Rms.py out_mann_whitney/ GSVApy-master/output/LX653_tumor_top_50.GSVA.tsv LX653_tumor_1,LX653_tumor_2 LX653_tumor_3,LX653_tumor_4
+  562  python runMannWhitney_Rms.py out_mann_whitney/ GSVApy-master/output/LX653_tumor_top_50.GSVA.tsv LX653_tumor_1,LX653_tumor_2 LX653_tumor_3,LX653_tumor_4
+  563  python runMannWhitney_Rms.py out_mann_whitney/ GSVApy-master/output/LX653_tumor_top_50.GSVA.tsv LX653_tumor_1,LX653_tumor_2 LX653_tumor_3,LX653_tumor_4
+  564  python runMannWhitney_Rms.py out_mann_whitney/ GSVApy-master/output/LX653_tumor_top_50.GSVA.tsv LX653_tumor_1,LX653_tumor_2 LX653_tumor_3,LX653_tumor_4 -dbg
+  565  python runMannWhitney_Rms.py out_mann_whitney/ GSVApy-master/output/LX653_tumor_top_50.GSVA.tsv LX653_tumor_1,LX653_tumor_2 LX653_tumor_3,LX653_tumor_4 -dbg
+  566  python runMannWhitney_Rms.py out_mann_whitney/ GSVApy-master/output/LX653_tumor_top_50.GSVA.tsv LX653_tumor_1,LX653_tumor_2 LX653_tumor_3,LX653_tumor_4 -show_w
+  567  python runMannWhitney_Rms.py out_mann_whitney/ GSVApy-master/output/LX653_tumor_top_50.GSVA.tsv LX653_tumor_0,LX653_tumor_1,LX653_tumor_2,LX653_tumor_3,LX653_tumor_4,LX653_tumor_5,LX653_tumor_6,LX653_tumor_7 LX653_tumor_8,LX653_tumor_9,LX653_tumor_10,LX653_tumor_11,LX653_tumor_12,LX653_tumor_13,LX653_tumor_14,LX653_tumor_15
+  568  python runMannWhitney_Rms.py out_mann_whitney/ GSVApy-master/output/LX653_tumor_top_50.GSVA.tsv LX653_tumor_0,LX653_tumor_1,LX653_tumor_2,LX653_tumor_3,LX653_tumor_4,LX653_tumor_5,LX653_tumor_6,LX653_tumor_7 LX653_tumor_8,LX653_tumor_9,LX653_tumor_10,LX653_tumor_11,LX653_tumor_12,LX653_tumor_13,LX653_tumor_14,LX653_tumor_15 -show_w
+  569  python runMannWhitney_Rms.py out_mann_whitney/ GSVApy-master/output/LX653_tumor_top_50.GSVA.tsv LX653_tumor_0,LX653_tumor_1,LX653_tumor_2,LX653_tumor_3,LX653_tumor_4,LX653_tumor_5,LX653_tumor_6,LX653_tumor_7 LX653_tumor_8,LX653_tumor_9,LX653_tumor_10,LX653_tumor_11,LX653_tumor_12,LX653_tumor_13,LX653_tumor_14,LX653_tumor_15 -show_w
+  570  python runMannWhitney_Rms.py out_mann_whitney/ GSVApy-master/output/LX653_tumor_top_50.GSVA.tsv LX653_tumor_0,LX653_tumor_1,LX653_tumor_2,LX653_tumor_3,LX653_tumor_4,LX653_tumor_5,LX653_tumor_6,LX653_tumor_7 LX653_tumor_8,LX653_tumor_9,LX653_tumor_10,LX653_tumor_11,LX653_tumor_12,LX653_tumor_13,LX653_tumor_14,LX653_tumor_15 -show_w
+  571  python runMannWhitney_Rms.py out_mann_whitney/ GSVApy-master/output/LX653_tumor_top_50.GSVA.tsv LX653_tumor_0,LX653_tumor_1,LX653_tumor_2,LX653_tumor_3,LX653_tumor_4,LX653_tumor_5,LX653_tumor_6,LX653_tumor_7 LX653_tumor_8,LX653_tumor_9,LX653_tumor_10,LX653_tumor_11,LX653_tumor_12,LX653_tumor_13,LX653_tumor_14,LX653_tumor_15 -show_w
+  572  python runMannWhitney_Rms.py out_mann_whitney/ GSVApy-master/output/LX653_tumor_top_50.GSVA.tsv LX653_tumor_0,LX653_tumor_1,LX653_tumor_2,LX653_tumor_3,LX653_tumor_4,LX653_tumor_5,LX653_tumor_6,LX653_tumor_7 LX653_tumor_8,LX653_tumor_9,LX653_tumor_10,LX653_tumor_11,LX653_tumor_12,LX653_tumor_13,LX653_tumor_14,LX653_tumor_15 -show_w
+  573  python -m pdb runMannWhitney_Rms.py out_mann_whitney/ GSVApy-master/output/LX653_tumor_top_50.GSVA.tsv LX653_tumor_0,LX653_tumor_1,LX653_tumor_2,LX653_tumor_3,LX653_tumor_4,LX653_tumor_5,LX653_tumor_6,LX653_tumor_7 LX653_tumor_8,LX653_tumor_9,LX653_tumor_10,LX653_tumor_11,LX653_tumor_12,LX653_tumor_13,LX653_tumor_14,LX653_tumor_15 -show_w
+  574  python -m pdb runMannWhitney_Rms.py out_mann_whitney/ GSVApy-master/output/LX653_tumor_top_50.GSVA.tsv LX653_tumor_0,LX653_tumor_1,LX653_tumor_2,LX653_tumor_3,LX653_tumor_4,LX653_tumor_5,LX653_tumor_6,LX653_tumor_7 LX653_tumor_8,LX653_tumor_9,LX653_tumor_10,LX653_tumor_11,LX653_tumor_12,LX653_tumor_13,LX653_tumor_14,LX653_tumor_15 -show_w
+  575  python -m pdb runMannWhitney_Rms.py out_mann_whitney/ GSVApy-master/output/LX653_tumor_top_50.GSVA.tsv LX653_tumor_0,LX653_tumor_1,LX653_tumor_2,LX653_tumor_3,LX653_tumor_4,LX653_tumor_5,LX653_tumor_6,LX653_tumor_7 LX653_tumor_8,LX653_tumor_9,LX653_tumor_10,LX653_tumor_11,LX653_tumor_12,LX653_tumor_13,LX653_tumor_14,LX653_tumor_15 -show_w
+  576  python -m pdb runMannWhitney_Rms.py out_mann_whitney/ GSVApy-master/output/LX653_tumor_top_50.GSVA.tsv LX653_tumor_0,LX653_tumor_1,LX653_tumor_2,LX653_tumor_3,LX653_tumor_4,LX653_tumor_5,LX653_tumor_6,LX653_tumor_7 LX653_tumor_8,LX653_tumor_9,LX653_tumor_10,LX653_tumor_11,LX653_tumor_12,LX653_tumor_13,LX653_tumor_14,LX653_tumor_15 
+  577  python -m pdb runMannWhitney_Rms.py out_mann_whitney/ GSVApy-master/output/LX653_tumor_top_50.GSVA.tsv LX653_tumor_0,LX653_tumor_1,LX653_tumor_2,LX653_tumor_3,LX653_tumor_4,LX653_tumor_5,LX653_tumor_6,LX653_tumor_7 LX653_tumor_8,LX653_tumor_9,LX653_tumor_10,LX653_tumor_11,LX653_tumor_12,LX653_tumor_13,LX653_tumor_14,LX653_tumor_15 
+  578  python -m pdb runMannWhitney_Rms.py out_mann_whitney/ GSVApy-master/output/LX653_tumor_top_50.GSVA.tsv LX653_tumor_0,LX653_tumor_1,LX653_tumor_2,LX653_tumor_3,LX653_tumor_4,LX653_tumor_5,LX653_tumor_6,LX653_tumor_7 LX653_tumor_8,LX653_tumor_9,LX653_tumor_10,LX653_tumor_11,LX653_tumor_12,LX653_tumor_13,LX653_tumor_14,LX653_tumor_15 
+  579  python -m pdb runMannWhitney_Rms.py out_mann_whitney/ GSVApy-master/output/LX653_tumor_top_50.GSVA.tsv LX653_tumor_0,LX653_tumor_1,LX653_tumor_2,LX653_tumor_3,LX653_tumor_4,LX653_tumor_5,LX653_tumor_6,LX653_tumor_7 LX653_tumor_8,LX653_tumor_9,LX653_tumor_10,LX653_tumor_11,LX653_tumor_12,LX653_tumor_13,LX653_tumor_14,LX653_tumor_15 
+  580  python -m pdb runMannWhitney_Rms.py out_mann_whitney/ GSVApy-master/output/LX653_tumor_top_50.GSVA.tsv LX653_tumor_0,LX653_tumor_1,LX653_tumor_2,LX653_tumor_3,LX653_tumor_4,LX653_tumor_5,LX653_tumor_6,LX653_tumor_7 LX653_tumor_8,LX653_tumor_9,LX653_tumor_10,LX653_tumor_11,LX653_tumor_12,LX653_tumor_13,LX653_tumor_14,LX653_tumor_15 
+  581  python -m pdb runMannWhitney_Rms.py out_mann_whitney/ GSVApy-master/output/LX653_tumor_top_50.GSVA.tsv LX653_tumor_0,LX653_tumor_1,LX653_tumor_2,LX653_tumor_3,LX653_tumor_4,LX653_tumor_5,LX653_tumor_6,LX653_tumor_7 LX653_tumor_8,LX653_tumor_9,LX653_tumor_10,LX653_tumor_11,LX653_tumor_12,LX653_tumor_13,LX653_tumor_14,LX653_tumor_15 -show_w
+  582  python -m pdb runMannWhitney_Rms.py out_mann_whitney/ GSVApy-master/output/LX653_tumor_top_50.GSVA.tsv LX653_tumor_0,LX653_tumor_1,LX653_tumor_2,LX653_tumor_3,LX653_tumor_4,LX653_tumor_5,LX653_tumor_6,LX653_tumor_7 LX653_tumor_8,LX653_tumor_9,LX653_tumor_10,LX653_tumor_11,LX653_tumor_12,LX653_tumor_13,LX653_tumor_14,LX653_tumor_15
+  583  python -m pdb runMannWhitney_Rms.py out_mann_whitney/ GSVApy-master/output/LX653_tumor_top_50.GSVA.tsv LX653_tumor_0,LX653_tumor_1,LX653_tumor_2,LX653_tumor_3,LX653_tumor_4,LX653_tumor_5,LX653_tumor_6,LX653_tumor_7 LX653_tumor_8,LX653_tumor_9,LX653_tumor_10,LX653_tumor_11,LX653_tumor_12,LX653_tumor_13,LX653_tumor_14,LX653_tumor_15
+  584  python -m pdb runMannWhitney_Rms.py out_mann_whitney/ GSVApy-master/output/LX653_tumor_top_50.GSVA.tsv LX653_tumor_0,LX653_tumor_1,LX653_tumor_2,LX653_tumor_3,LX653_tumor_4,LX653_tumor_5,LX653_tumor_6,LX653_tumor_7 LX653_tumor_8,LX653_tumor_9,LX653_tumor_10,LX653_tumor_11,LX653_tumor_12,LX653_tumor_13,LX653_tumor_14,LX653_tumor_15 -show_w
+  585  python -m pdb runMannWhitney_Rms.py out_mann_whitney/ GSVApy-master/output/LX653_tumor_top_50.GSVA.tsv LX653_tumor_0,LX653_tumor_1,LX653_tumor_2,LX653_tumor_3,LX653_tumor_4,LX653_tumor_5,LX653_tumor_6,LX653_tumor_7 LX653_tumor_8,LX653_tumor_9,LX653_tumor_10,LX653_tumor_11,LX653_tumor_12,LX653_tumor_13,LX653_tumor_14,LX653_tumor_15 -show_w
+  586  python  runMannWhitney_Rms.py out_mann_whitney/ GSVApy-master/output/LX653_tumor_top_50.GSVA.tsv LX653_tumor_0,LX653_tumor_1,LX653_tumor_2,LX653_tumor_3,LX653_tumor_4,LX653_tumor_5,LX653_tumor_6,LX653_tumor_7 LX653_tumor_8,LX653_tumor_9,LX653_tumor_10,LX653_tumor_11,LX653_tumor_12,LX653_tumor_13,LX653_tumor_14,LX653_tumor_15 -show_w
+  587  python  runMannWhitney_Rms.py out_mann_whitney/ GSVApy-master/output/LX653_tumor_top_50.GSVA.tsv LX653_tumor_0,LX653_tumor_1,LX653_tumor_2,LX653_tumor_3,LX653_tumor_4,LX653_tumor_5,LX653_tumor_6,LX653_tumor_7 LX653_tumor_8,LX653_tumor_9,LX653_tumor_10,LX653_tumor_11,LX653_tumor_12,LX653_tumor_13,LX653_tumor_14,LX653_tumor_15 
+  588  python  runMannWhitney_Rms.py out_mann_whitney/ GSVApy-master/output/LX653_tumor_top_50.GSVA.tsv LX653_tumor_0,LX653_tumor_1,LX653_tumor_2,LX653_tumor_3,LX653_tumor_4,LX653_tumor_5,LX653_tumor_6,LX653_tumor_7 LX653_tumor_8,LX653_tumor_9,LX653_tumor_10,LX653_tumor_11,LX653_tumor_12,LX653_tumor_13,LX653_tumor_14,LX653_tumor_15 -show_w
+  589  python  runMannWhitney_Rms.py out_mann_whitney/ GSVApy-master/output/LX653_tumor_top_50.GSVA.tsv LX653_tumor_0,LX653_tumor_1,LX653_tumor_2,LX653_tumor_3,LX653_tumor_4,LX653_tumor_5,LX653_tumor_6,LX653_tumor_7 LX653_tumor_8,LX653_tumor_9,LX653_tumor_10,LX653_tumor_11,LX653_tumor_12,LX653_tumor_13,LX653_tumor_14,LX653_tumor_15 -show_w
+  590  python  runMannWhitney_Rms.py out_mann_whitney/ GSVApy-master/output/LX653_tumor_top_50.GSVA.tsv LX653_tumor_0,LX653_tumor_1,LX653_tumor_2,LX653_tumor_3,LX653_tumor_4,LX653_tumor_5,LX653_tumor_6,LX653_tumor_7 LX653_tumor_8,LX653_tumor_9,LX653_tumor_10,LX653_tumor_11,LX653_tumor_12,LX653_tumor_13,LX653_tumor_14,LX653_tumor_15 -show_w
+  591  history > /Users/Ron/Desktop/gsva_history.txt
