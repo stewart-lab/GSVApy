@@ -6,9 +6,9 @@
 # KVA_name|KVA_Description|Is_out_dir|Is_Dir|Check_Directory|Is_file|Check_File|alternate_KVA_name|default value|type
 # in_targets_with_hits| input file of targets that have at least one hit_in_db|0|0|0|1|1|||
 # Example below
-Read in file of gene expression (genes in rows, samples in columns with headers) and perform mann-whitney test on specified samples
+Read in file of gene expression or GSVA scores(genes in rows, samples in columns with headers) and perform mann-whitney test on specified samples
 out_dir|Top level directory that holds all the results|1|1|1|0|0|||
-in_file|input file of gene expression|0|0|0|1|1|||
+in_file|input file of gene expression or GSVA scores|0|0|0|1|1|||
 cond1_names|header names of condition 1 samples (comma-separated)|0|0|0|0|0|||
 cond2_names|header names of condition 1 samples (comma-separated)|0|0|0|0|0|||
 -paired|paired data|0|0|0|0|0|--paired_data|BOOLEANFALSE|
