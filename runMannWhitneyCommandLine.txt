@@ -13,4 +13,8 @@ cond1_names|header names of condition 1 samples (comma-separated)|0|0|0|0|0|||
 cond2_names|header names of condition 1 samples (comma-separated)|0|0|0|0|0|||
 -paired|paired data|0|0|0|0|0|--paired_data|BOOLEANFALSE|
 -show_w|show wilks p-value|0|0|0|0|0|--show_wilks|BOOLEANFALSE|
+-MW|Run Mann-Whitney test (default is t-test)|0|0|0|0|0|--mann_whitney|BOOLEANFALSE|
+-use_pval|Permute using the p-value (default is to permute using the statistic)|0|0|0|0|0|--use_pval_for_perm|BOOLEANFALSE|
+-perm|Permute (default is to NOT permute)|0|0|0|0|0|--permute|BOOLEANFALSE|
+-shuf_labels|NOT CURRENTLY WORKING  Permute based on shuffling labels (default is to NOT permute based on shuffling labels)|0|0|0|0|0|--shuffle_labels|BOOLEANFALSE|
 -dbg|debug|0|0|0|0|0|--debug|BOOLEANFALSE|
