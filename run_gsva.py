@@ -115,7 +115,7 @@ def main():
     
     frames = []
     frames.append(res_df)
-    NUM_PERMS = 10
+    NUM_PERMS = 1000
     for i in range(1, NUM_PERMS +1):
         permuted_df  = df.reindex(np.random.permutation(df.index))
         permuted_df.index = df.index

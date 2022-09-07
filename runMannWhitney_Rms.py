@@ -22,7 +22,9 @@ def main():
     shuffle_labels = my_args['shuffle_labels']
     if shuffle_labels:
         print("Not sure if shuffle labels is working properly. Bug Ron to test it!")
-        sys.exit()
+        if not permute:
+           print("Should set permute flag if choosing shuffle_labels.")
+           sys.exit()
     if use_pval_for_perm:
        if not permute:
            print("Should set permute flag if choosing use_pval_for_perm.")
@@ -75,7 +77,7 @@ def main():
     mod_stat_or_p_val_dict = OrderedDict()
     pval_dict = OrderedDict()
     adj_pval_dict = OrderedDict()
-    adj_empir_row_pval_dict = OrderedDict()
+    adj_empir_pval_dict = OrderedDict()
     pval_list = []
 
     if (my_args["show_wilks"]):
@@ -112,13 +114,13 @@ def main():
     
     if permute:
         if shuffle_labels:
-            empir_label_pvals = calculate_empirical_label_pvalues(df, shuf_conds, paired_data, cond1_len, mod_stat_or_p_val_dict, MW, use_pval_for_perm)
+            empir_pvals = calculate_empirical_label_pvalues(df, shuf_conds, paired_data, cond1_len, mod_stat_or_p_val_dict, MW, use_pval_for_perm)
         else:
-            empir_row_pvals = calculate_empirical_row_pvalues(df, paired_data, mod_stat_or_p_val_dict, cond1_names, cond2_names, MW, use_pval_for_perm)
-        empir_row_pval_list = []
-        for key,  pval in empir_row_pvals.items():
-            empir_row_pval_list.append(float(pval))
-        adj_empir_row_pvals = []
+            empir_pvals = calculate_empirical_row_pvalues(df, paired_data, mod_stat_or_p_val_dict, cond1_names, cond2_names, MW, use_pval_for_perm)
+        empir_pval_list = []
+        for key,  pval in empir_pvals.items():
+            empir_pval_list.append(float(pval))
+        adj_empir_pvals = []
     
     with open(out_file, 'w') as out_mw: 
         if MW:
@@ -131,7 +133,7 @@ def main():
             else:
                 shuffle_pvals_or_stats = " using mod stats"
             if shuffle_labels:
-                out_mw.write(f"Term\tStat\t{pval_type}\tAdj P Value (B+H)\tEmpirical P Value (shuffle Labels {shuffle_pvals_or_stats})\n")  
+                out_mw.write(f"Term\tStat\t{pval_type}\tAdj P Value (B+H)\tEmpirical P Value (shuffle Labels {shuffle_pvals_or_stats})\tAdj Empir Label Pval)\n")  
             else:
                 out_mw.write(f"Term\tStat\t{pval_type}\tAdj P Value (B+H)\tEmpirical P Value (shuffle rows {shuffle_pvals_or_stats})\tAdj Empir Row Pval\n")   
         else:
@@ -140,16 +142,16 @@ def main():
         for i, term in enumerate(stat_dict.keys()): 
             adj_pval_dict[term] = '{:.4f}'.format(adj_pvals[i])
         if permute:
-            rej, adj_empir_row_pvals, _, _ = sm.multipletests(empir_row_pval_list, alpha=0.05, method='fdr_bh')      
+            rej, adj_empir_pvals, _, _ = sm.multipletests(empir_pval_list, alpha=0.05, method='fdr_bh')      
             for i, term in enumerate(stat_dict.keys()): 
-                adj_empir_row_pval_dict[term] = '{:.4f}'.format(adj_empir_row_pvals[i])    
+                adj_empir_pval_dict[term] = '{:.4f}'.format(adj_empir_pvals[i])    
         for term in stat_dict.keys():
             if pval_dict[term] < 1.1:  #  Used to be < 0.05, now, let's let them all through.
                 if permute:
                     if shuffle_labels:
-                        out_mw.write(f"{term}\t{stat_dict[term]}\t{pval_dict[term]}\t{adj_pval_dict[term]}\t{empir_label_pvals[term]}\n")  # need to add adj empir pval here. RMS.
+                        out_mw.write(f"{term}\t{stat_dict[term]}\t{pval_dict[term]}\t{adj_pval_dict[term]}\t{empir_pvals[term]}\t{adj_empir_pval_dict[term]}\n") 
                     else:
-                        out_mw.write(f"{term}\t{stat_dict[term]}\t{pval_dict[term]}\t{adj_pval_dict[term]}\t{empir_row_pvals[term]}\t{adj_empir_row_pval_dict[term]}\n")  
+                        out_mw.write(f"{term}\t{stat_dict[term]}\t{pval_dict[term]}\t{adj_pval_dict[term]}\t{empir_pvals[term]}\t{adj_empir_pval_dict[term]}\n")  
                 else:
                     out_mw.write(f"{term}\t{stat_dict[term]}\t{pval_dict[term]}\t{adj_pval_dict[term]}\n")        
     cmdlogtime.end(logfile, start_time_secs)    
@@ -171,8 +173,7 @@ def calc_stats(cond1_names, cond2_names, paired_data, row, MW, use_pval_for_perm
         mod_stat = stat_obj.pvalue
     else:
         if MW:
-            #rms.  this modification needs to be based on number of samples.  It seems like there are 9, but MW makes it seem like I should be using 10
-            # rms, so, I'm gonna add 1 to num_samples.  Probably need to understand why.  See line at start of function
+            #rms.  this modification needs to be based on the middle_mw_score
             mod_stat = - abs(middle_mw_score - stat_obj.statistic)
         else: # t-test
             mod_stat = stat_obj.statistic
@@ -180,7 +181,7 @@ def calc_stats(cond1_names, cond2_names, paired_data, row, MW, use_pval_for_perm
                 mod_stat = - mod_stat
     return stat_obj, mod_stat
 
-def calculate_empirical_label_pvalues(df, shuf_conds, paired_data, cond1_len, mod_stat_or_pval_dict, MW, use_pval_for_perm):
+def calculate_empirical_label_pvalues(df, shuf_conds, paired_data, cond1_len, mod_stat_or_p_val_dict, MW, use_pval_for_perm):
     empir_label_pvals = OrderedDict()
     NUM_PERMS = 100  # RMS, make this an input parameter for label permutation
     perm_fraction = 1/NUM_PERMS
