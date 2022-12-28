@@ -5,20 +5,10 @@ import sys
 import os
 import cmdlogtime 
 import pdb
-#import rmstime
-#import rmscmdline
-#import rmslogging
 
 COMMAND_LINE_DEF_FILE = "./trimGeneSetsCommandLine.txt"
-
 def main():
-    (start_time_secs, pretty_start_time, my_args, logfile) = cmdlogtime.begin(COMMAND_LINE_DEF_FILE, sys.argv[0])
-    #(start_time_secs, pretty_start_time) = rmstime.get_time_and_pretty_time()
-    #print("pretty_start:", pretty_start_time)
-    
-    #my_args = rmscmdline.get_args(start_time_secs, pretty_start_time, COMMAND_LINE_DEF_FILE)
-    #logfile = rmslogging.open_log_file(my_args["log_file"])
-    #rmslogging.write_args_and_files(my_args, sys.argv[0], COMMAND_LINE_DEF_FILE, logfile)
+    (start_time_secs, pretty_start_time, my_args, logfile) = cmdlogtime.begin(COMMAND_LINE_DEF_FILE)
     
     in_genes = my_args["in_genes"]
     in_genesets = my_args["in_genesets"]
@@ -51,10 +41,6 @@ def main():
                 out_f.write(line)
     
     cmdlogtime.end(logfile, start_time_secs)
-    #rmslogging.close_log_file(logfile)  
-    #(end_time_secs, x) = rmstime.get_time_and_pretty_time()
-    #total_elapsed_time = end_time_secs - start_time_secs
-    #print("All done. Total elapsed time: " + str(total_elapsed_time) + " seconds.\n")      
 
 if __name__ == "__main__":
     main()

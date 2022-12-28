@@ -9,6 +9,7 @@ from rpy2.robjects import r, pandas2ri
 from rpy2.robjects.conversion import localconverter
 import rpy2.robjects as ro
 import sys
+import numpy as np
 
 def run_GSVA(df_expr, gene_set_to_genes, distr='Gaussian'):
     """
@@ -105,9 +106,27 @@ def main():
     df = pd.read_csv(data_f, sep='\t', index_col=0)
     if options.transpose:
         df = df.transpose()
-
+    
+    
+    #import pdb
+    #pdb.set_trace()
     res_df = run_GSVA(df, gene_set_to_genes, distr=distr)
-    res_df.to_csv(out_f, sep='\t')
+    res_df["PERMUTED"] = 0
+    
+    frames = []
+    frames.append(res_df)
+    NUM_PERMS = 10  # change to 1000 to get more resolution for empirical p values
+    for i in range(1, NUM_PERMS +1):
+        permuted_df  = df.reindex(np.random.permutation(df.index))
+        permuted_df.index = df.index
+    
+        perm_df = run_GSVA(permuted_df, gene_set_to_genes, distr=distr)
+        perm_df["PERMUTED"] = i
+    
+        frames.append(perm_df)
+        
+    all_dfs = pd.concat(frames)
+    all_dfs.to_csv(out_f, sep='\t')
 
 if __name__ == "__main__":
     main()
