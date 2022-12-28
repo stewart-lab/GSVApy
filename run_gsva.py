@@ -115,6 +115,7 @@ def main():
     
     frames = []
     frames.append(res_df)
+
     NUM_PERMS = 10  # change to 1000 to get more resolution for empirical p values
     for i in range(1, NUM_PERMS +1):
         permuted_df  = df.reindex(np.random.permutation(df.index))
