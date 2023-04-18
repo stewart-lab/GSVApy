@@ -3,26 +3,25 @@
 ##############################################################################
 
 from optparse import OptionParser
-import json
 import pandas as pd
-from rpy2.robjects import r, pandas2ri
+from rpy2.robjects import pandas2ri
 from rpy2.robjects.conversion import localconverter
 import rpy2.robjects as ro
-import sys
 import numpy as np
+
 
 def run_GSVA(df_expr, gene_set_to_genes, distr='Gaussian'):
     """
     Parameters
     ----------
     df_expr : DataFrame
-        A gene-by-sample Pandas DataFrame storing the gene expression 
+        A gene-by-sample Pandas DataFrame storing the gene expression
         matrix.
     gene_set_to_genes: dictionary
         A dictionary mapping each gene set name (string) to list of gene
         names (list of strings).
     distr: string
-        The distribution to use in the GSVA algorithm. Must be either 
+        The distribution to use in the GSVA algorithm. Must be either
         'Poisson' or 'Gaussian'.
 
     Returns
@@ -42,12 +41,12 @@ def run_GSVA(df_expr, gene_set_to_genes, distr='Gaussian'):
     with localconverter(ro.default_converter + pandas2ri.converter):
         r_expr = ro.conversion.py2rpy(df_expr)
         r_genes = ro.conversion.py2rpy(list(df_expr.index))
-        r_gene_set_names = ro.conversion.py2rpy(gene_set_names)
-        r_gene_lists = ro.conversion.py2rpy(gene_lists)
+        # r_gene_set_names = ro.conversion.py2rpy(gene_set_names)
+        # r_gene_lists = ro.conversion.py2rpy(gene_lists)
         r_gs = ro.vectors.ListVector(gene_set_to_genes)
 
     # The R function for running GSVA
-    rstring="""
+    rstring = """
         function(expr, genes, gs) {{
             library(GSVA)
             gs <- lapply(gs, as.character)
@@ -74,8 +73,8 @@ def run_GSVA(df_expr, gene_set_to_genes, distr='Gaussian'):
 def _parse_gene_sets(gene_sets_f):
     gene_set_to_genes = {}
     with open(gene_sets_f, 'r') as f:
-        for l in f:
-            toks = l.split('\t')
+        for line in f:
+            toks = line.split('\t')
             gene_set = toks[0]
             genes = toks[2:]
             gene_set_to_genes[gene_set] = genes
@@ -106,28 +105,26 @@ def main():
     df = pd.read_csv(data_f, sep='\t', index_col=0)
     if options.transpose:
         df = df.transpose()
-    
-    
-    #import pdb
-    #pdb.set_trace()
+
     res_df = run_GSVA(df, gene_set_to_genes, distr=distr)
     res_df["PERMUTED"] = 0
-    
+
     frames = []
     frames.append(res_df)
 
-    NUM_PERMS = 10  # change to 1000 to get more resolution for empirical p values
-    for i in range(1, NUM_PERMS +1):
-        permuted_df  = df.reindex(np.random.permutation(df.index))
+    NUM_PERMS = 1  # change to 1000 to get more resolution for empirical p values
+    for i in range(1, NUM_PERMS + 1):
+        permuted_df = df.reindex(np.random.permutation(df.index))
         permuted_df.index = df.index
-    
+
         perm_df = run_GSVA(permuted_df, gene_set_to_genes, distr=distr)
         perm_df["PERMUTED"] = i
-    
+
         frames.append(perm_df)
-        
+
     all_dfs = pd.concat(frames)
     all_dfs.to_csv(out_f, sep='\t')
+
 
 if __name__ == "__main__":
     main()
