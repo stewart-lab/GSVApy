@@ -18,3 +18,5 @@ cond2_names|header names of condition 1 samples (comma-separated)|0|0|0|0|0|||
 -perm|Permute (default is to NOT permute)|0|0|0|0|0|--permute|BOOLEANFALSE|
 -shuf_labels|NOT CURRENTLY WORKING  Permute based on shuffling labels (default is to NOT permute based on shuffling labels)|0|0|0|0|0|--shuffle_labels|BOOLEANFALSE|
 -dbg|debug|0|0|0|0|0|--debug|BOOLEANFALSE|
+-wel_t|Do Welch t test|0|0|0|0|0|--welch_t|BOOLEANFALSE|
+-alt|alternative for test. Must be: two-sided, less, or greater|0|0|0|0|0|--alternative|two-sided|

@@ -60,6 +60,10 @@ def run_GSVA(df_expr, gene_set_to_genes, distr='Gaussian'):
     """.format(distr)
 
     # Run the R code
+    # import pdb
+    # db.set_trace()
+    print("rstring: ", rstring)
+    print("r_expr:")
     r_func = ro.r(rstring)
     r_res = r_func(r_expr, r_genes, r_gs)
 
@@ -74,7 +78,7 @@ def _parse_gene_sets(gene_sets_f):
     gene_set_to_genes = {}
     with open(gene_sets_f, 'r') as f:
         for line in f:
-            toks = line.split('\t')
+            toks = line.strip().split('\t')  # rms, added the .strip() to get rid of last \n
             gene_set = toks[0]
             genes = toks[2:]
             gene_set_to_genes[gene_set] = genes

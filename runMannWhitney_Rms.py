@@ -18,6 +18,11 @@ def main():
     use_pval_for_perm = my_args['use_pval_for_perm']
     permute = my_args['permute']
     shuffle_labels = my_args['shuffle_labels']
+    welch_t = my_args['welch_t']
+    alt = my_args['alternative']
+    if alt not in ['two-sided', 'less', 'greater']:
+        print("alternative must be one of 'two-sided', 'less', or 'greater'.")
+        sys.exit()
     if shuffle_labels:
         print("Not sure if shuffle labels is working properly. Bug Ron to test it!")
         if not permute:
@@ -29,12 +34,18 @@ def main():
             sys.exit()
 
     if MW:
+        if welch_t:
+            print("welch_t is only valid for unpaired t-test, not mann-whitney test.")
+            sys.exit()
         if paired_data:
             out_file_name = "output_wilcoxonpaired.tsv"
         else:
             out_file_name = "output_mw.tsv"
     else:
         if paired_data:
+            if welch_t:
+                print("welch_t is only valid for unpaired t-test not paired t-test.")
+                sys.exit()
             out_file_name = "output_t_paired.tsv"
         else:
             out_file_name = "output_t.tsv"
@@ -98,7 +109,7 @@ def main():
     for _, row in df.iterrows():
         if (row.loc['PERMUTED'] != 0):
             break
-        stat_obj, mod_stat = calc_stats(cond1_names, cond2_names, paired_data, row, MW, use_pval_for_perm)
+        stat_obj, mod_stat = calc_stats(cond1_names, cond2_names, paired_data, row, MW, use_pval_for_perm, welch_t, alt)
 
         stat_dict[row[0]] = stat_obj.statistic
         pval_dict[row[0]] = stat_obj.pvalue
@@ -110,9 +121,9 @@ def main():
 
     if permute:
         if shuffle_labels:
-            empir_pvals = calculate_empirical_label_pvalues(df, shuf_conds, paired_data, cond1_len, mod_stat_or_p_val_dict, MW, use_pval_for_perm)
+            empir_pvals = calculate_empirical_label_pvalues(df, shuf_conds, paired_data, cond1_len, mod_stat_or_p_val_dict, MW, use_pval_for_perm, welch_t, alt)
         else:
-            empir_pvals = calculate_empirical_row_pvalues(df, paired_data, mod_stat_or_p_val_dict, cond1_names, cond2_names, MW, use_pval_for_perm)
+            empir_pvals = calculate_empirical_row_pvalues(df, paired_data, mod_stat_or_p_val_dict, cond1_names, cond2_names, MW, use_pval_for_perm, welch_t, alt)
         empir_pval_list = []
         for key, pval in empir_pvals.items():
             empir_pval_list.append(float(pval))
@@ -154,18 +165,21 @@ def main():
 
 
 # --------------------------------------- FUNCTIONS ---------------------------------
-def calc_stats(cond1_names, cond2_names, paired_data, row, MW, use_pval_for_perm):
+def calc_stats(cond1_names, cond2_names, paired_data, row, MW, use_pval_for_perm, welch_t, alt):
     middle_mw_score = (len(cond1_names) * len(cond2_names)) / 2  # maximum MW score is #ofSamplesOfCondition1 * #ofSamplesOfCondition2.
     if MW:
         if paired_data:
-            stat_obj = stats.wilcoxon(x=row[cond1_names].astype(float), y=row[cond2_names].astype(float), alternative="two-sided")
+            stat_obj = stats.wilcoxon(x=row[cond1_names].astype(float), y=row[cond2_names].astype(float), alternative=alt)
         else:
-            stat_obj = stats.mannwhitneyu(x=row[cond1_names].astype(float), y=row[cond2_names].astype(float), alternative="two-sided")
+            stat_obj = stats.mannwhitneyu(x=row[cond1_names].astype(float), y=row[cond2_names].astype(float), alternative=alt)
     else:  # t-test.
+        equal_var = True
+        if welch_t:
+            equal_var = False
         if paired_data:
-            stat_obj = stats.ttest_rel(a=row[cond1_names].astype(float), b=row[cond2_names].astype(float))
+            stat_obj = stats.ttest_rel(a=row[cond1_names].astype(float), b=row[cond2_names].astype(float), alternative=alt)  # equal_var not a parm for ttest_rel
         else:
-            stat_obj = stats.ttest_ind(a=row[cond1_names].astype(float), b=row[cond2_names].astype(float), permutations=0)
+            stat_obj = stats.ttest_ind(a=row[cond1_names].astype(float), b=row[cond2_names].astype(float), permutations=0, equal_var=equal_var, alternative=alt)
 
     if use_pval_for_perm:
         mod_stat = stat_obj.pvalue
@@ -180,7 +194,7 @@ def calc_stats(cond1_names, cond2_names, paired_data, row, MW, use_pval_for_perm
     return stat_obj, mod_stat
 
 
-def calculate_empirical_label_pvalues(df, shuf_conds, paired_data, cond1_len, mod_stat_or_p_val_dict, MW, use_pval_for_perm):
+def calculate_empirical_label_pvalues(df, shuf_conds, paired_data, cond1_len, mod_stat_or_p_val_dict, MW, use_pval_for_perm, welch_t, alt):
     empir_label_pvals = OrderedDict()
     NUM_PERMS = 100  # RMS, make this an input parameter for label permutation
     perm_fraction = 1 / NUM_PERMS
@@ -193,7 +207,7 @@ def calculate_empirical_label_pvalues(df, shuf_conds, paired_data, cond1_len, mo
             random.shuffle(shuf_conds)
             shuf_cond1_names = shuf_conds[:cond1_len]
             shuf_cond2_names = shuf_conds[cond1_len:]
-            stat_obj, mod_stat = calc_stats(shuf_cond1_names, shuf_cond2_names, paired_data, row, MW, use_pval_for_perm)
+            stat_obj, mod_stat = calc_stats(shuf_cond1_names, shuf_cond2_names, paired_data, row, MW, use_pval_for_perm, welch_t, alt)
             perm_stats_or_pvals.append(mod_stat)
 
         perm_stats_or_pvals.sort()
@@ -212,7 +226,7 @@ def calculate_empirical_label_pvalues(df, shuf_conds, paired_data, cond1_len, mo
     return empir_label_pvals
 
 
-def calculate_empirical_row_pvalues(df, paired_data, mod_stat_or_pval_dict, cond1_names, cond2_names, MW, use_pval_for_perm):
+def calculate_empirical_row_pvalues(df, paired_data, mod_stat_or_pval_dict, cond1_names, cond2_names, MW, use_pval_for_perm, welch_t, alt):
     empir_row_pvals = OrderedDict()
     perm_stats_or_pvals_by_term = defaultdict(list)
     ctr = 0
@@ -225,7 +239,7 @@ def calculate_empirical_row_pvalues(df, paired_data, mod_stat_or_pval_dict, cond
         perm_to_process = int(row.loc['PERMUTED'])
         ctr = ctr + 1
         # perm_pvals = []
-        stat_obj, mod_stat = calc_stats(cond1_names, cond2_names, paired_data, row, MW, use_pval_for_perm)
+        stat_obj, mod_stat = calc_stats(cond1_names, cond2_names, paired_data, row, MW, use_pval_for_perm, welch_t, alt)
 
         perm_stats_or_pvals_by_term[row[0]].append(mod_stat)
 
