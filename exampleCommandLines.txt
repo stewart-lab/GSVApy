@@ -1,4 +1,5 @@
-Here are some example command lines:
+Here are some example command lines. These are specific for Ron's Trashcan.  See further down
+for example command lines that should run on any machine:
 ---- RUN TRIM GENE SETS -------------------------------------  
   (base) F5KN104YF9VN:GSVApy  python ./trimGeneSets.py ../../ActiveCollaborations/Tattersall/GSVA_Tattersall/outTrimmedGeneSets/ ../../ActiveCollaborations/Tattersall/GSVA_Tattersall/RonsFilteredGeneListBasedOnMaxLog2TPM_#samplesZero_andCoeffOfVariation/all.Tattersall_exp2_l2tpmSomeFiltrationAttempts.txt   ../../ActiveCollaborations/Tattersall/GSVA_Tattersall/gene_sets/c5.bp.v7.1.symbols.gmt -num_genes_req=3 -num_top_genes=200
 pretty_start:  2022_05_02_13_18_22
@@ -44,5 +45,129 @@ All done. Total elapsed time: 17.0 seconds.
 
 
 
-
+------------------------------------------------------------------------------------
 See Histories_Commands/ for more  example command lines
+
+------------------------------------------------------------------------------------
+
+THE EXAMPLE COMMANDS BELOW SHOULD RUN ON ANY MACHINE:
+
+---- RUN TRIM GENE SETS -------------------------------------  
+  (base) F5KN104YF9VN:GSVApy  python ./trimGeneSets.py ./outTrimmedGeneSets/ ./example_data/all.Tattersall_exp2_l2tpmSomeFiltrationAttempts.txt   ./gene_sets/c5.bp.v7.1.symbols.gmt -num_genes_req=3 -num_top_genes=200
+IN LOCAL
+pretty_start:  2023_05_05_14_50_14
+outdir:  /Users/Ron/Desktop/GeneSetEnrichment_General/GSVA/GSVApy/outTrimmedGeneSets/2023_05_05_14_50_14
+All done. Total elapsed time: 0.0 seconds.
+
+
+---- RUN GSVA -------------------------------------
+F5KN104YF9VN:GSVApy python run_gsva.py ./example_data/all.Tattersall_exp2_l2tpmJustVapePostVsPreSamplesForGSVA.txt ./outTrimmedGeneSets/2023_05_05_14_50_14/output_genesets.tsv -o ./GSVA_example_output/tattersallVapePostVsPre_trimmedGeneSet_200gene3Required_v3_GSVA.tsv
+Warning! No distribution was specified (see the '--distribution' flag). Using 'Guassian' by default.
+rstring:  
+        function(expr, genes, gs) {
+            library(GSVA)
+            gs <- lapply(gs, as.character)
+            expr <- as.matrix(expr)
+            rownames(expr) <- unlist(genes)
+            colnames(expr) <- colnames(expr)
+            res <- gsva(expr, gs, kcdf="Gaussian", mx.diff=TRUE)
+            df <- data.frame(res)
+            df
+        }
+    
+r_expr:
+Estimating GSVA scores for 661 gene sets.
+Estimating ECDFs with Gaussian kernels
+  |======================================================================| 100%
+
+rstring:  
+        function(expr, genes, gs) {
+            library(GSVA)
+            gs <- lapply(gs, as.character)
+            expr <- as.matrix(expr)
+            rownames(expr) <- unlist(genes)
+            colnames(expr) <- colnames(expr)
+            res <- gsva(expr, gs, kcdf="Gaussian", mx.diff=TRUE)
+            df <- data.frame(res)
+            df
+        }
+    
+r_expr:
+Estimating GSVA scores for 661 gene sets.
+Estimating ECDFs with Gaussian kernels
+  |======================================================================| 100%
+
+R[write to console]: Warning messages:
+
+R[write to console]: 1: 
+R[write to console]: In .filterFeatures(expr, method) :
+R[write to console]: 
+ 
+R[write to console]:  4034 genes with constant expression values throuhgout the samples.
+
+R[write to console]: 2: 
+R[write to console]: In .filterFeatures(expr, method) :
+R[write to console]: 
+ 
+R[write to console]:  Since argument method!="ssgsea", genes with constant expression values are discarded.
+
+R[write to console]: 3: 
+R[write to console]: In .filterFeatures(expr, method) :
+R[write to console]: 
+ 
+R[write to console]:  4034 genes with constant expression values throuhgout the samples.
+
+R[write to console]: 4: 
+R[write to console]: In .filterFeatures(expr, method) :
+R[write to console]: 
+ 
+R[write to console]:  Since argument method!="ssgsea", genes with constant expression values are discarded.
+
+  
+---- RUN MANN WHITNEY -------------------------------------
+ (base) F5KN104YF9VN:GSVApy Ron$ python  runMannWhitney_Rms.py ./out_mann_whitney/ ./GSVA_example_output/tattersallVapePostVsPre_trimmedGeneSet_200gene3Required_v3_GSVA.tsv  X090319_0121168,X090328_0121177,X090333_0121182,X090343_0121192,X090347_0121196,X090350_0121199,X090352_0121201,X090364_0121213 X090318_0121167,X090320_0121169,X090324_0121173,X090327_0121176,X090332_0121181,X090342_0121191,X090346_0121195,X090349_0121198,X090351_0121200,X090363_0121212  -show_w
+IN LOCAL
+pretty_start:  2023_05_05_15_32_18
+outdir:  /Users/Ron/Desktop/GeneSetEnrichment_General/GSVA/GSVApy/out_mann_whitney/2023_05_05_15_32_18
+cond1: X090319_0121168
+cond1: X090328_0121177
+cond1: X090333_0121182
+cond1: X090343_0121192
+cond1: X090347_0121196
+cond1: X090350_0121199
+cond1: X090352_0121201
+cond1: X090364_0121213
+cond2: X090318_0121167
+cond2: X090320_0121169
+cond2: X090324_0121173
+cond2: X090327_0121176
+cond2: X090332_0121181
+cond2: X090342_0121191
+cond2: X090346_0121195
+cond2: X090349_0121198
+cond2: X090351_0121200
+cond2: X090363_0121212
+                                  Unnamed: 0  X090319_0121168  X090328_0121177  ...  X090351_0121200  X090363_0121212  PERMUTED
+0  GO_POSITIVE_REGULATION_OF_KINASE_ACTIVITY        -0.021969        -0.036185  ...        -0.076191        -0.042082         0
+1                 GO_POTASSIUM_ION_TRANSPORT         0.131305        -0.023879  ...         0.018418         0.130983         0
+
+[2 rows x 20 columns]
+['X090319_0121168', 'X090328_0121177', 'X090333_0121182', 'X090343_0121192', 'X090347_0121196', 'X090350_0121199', 'X090352_0121201', 'X090364_0121213', 'X090318_0121167', 'X090320_0121169', 'X090324_0121173', 'X090327_0121176', 'X090332_0121181', 'X090342_0121191', 'X090346_0121195', 'X090349_0121198', 'X090351_0121200', 'X090363_0121212']
+8
+                                             Unnamed: 0  X090319_0121168  X090328_0121177  ...  X090351_0121200  X090363_0121212  PERMUTED
+0             GO_POSITIVE_REGULATION_OF_KINASE_ACTIVITY        -0.021969        -0.036185  ...        -0.076191        -0.042082         0
+1                            GO_POTASSIUM_ION_TRANSPORT         0.131305        -0.023879  ...         0.018418         0.130983         0
+2       GO_POSITIVE_REGULATION_OF_CALCIUM_ION_TRANSPORT        -0.084055         0.052049  ...        -0.130404         0.139866         0
+3                                 GO_NEURON_DEVELOPMENT         0.034299        -0.052059  ...        -0.025264        -0.054066         0
+4     GO_POSITIVE_REGULATION_OF_MYOTUBE_DIFFERENTIATION        -0.320299         0.135592  ...        -0.359028         0.026295         0
+...                                                 ...              ...              ...  ...              ...              ...       ...
+1317                   GO_REGULATION_OF_PHOSPHORYLATION         0.011719         0.014573  ...        -0.020384        -0.019024         1
+1318    GO_CELLULAR_NITROGEN_COMPOUND_CATABOLIC_PROCESS        -0.027984        -0.007741  ...        -0.001715         0.033732         1
+1319           GO_ESTABLISHMENT_OF_LOCALIZATION_IN_CELL         0.036526        -0.006630  ...        -0.047376        -0.021017         1
+1320  GO_REGULATION_OF_POTASSIUM_ION_TRANSMEMBRANE_T...         0.159675        -0.017825  ...         0.005539         0.109279         1
+1321         GO_NEGATIVE_REGULATION_OF_VIRAL_LIFE_CYCLE        -0.030564         0.091435  ...        -0.031572         0.042998         1
+
+[1322 rows x 20 columns]
+All done. Total elapsed time: 1.0 seconds.
+
+

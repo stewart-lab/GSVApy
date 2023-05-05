@@ -1,0 +1,13 @@
+args:
+out_dir^/Users/Ron/Desktop/GeneSetEnrichment_General/GSVA/GSVApy/outTrimmedGeneSets/2023_05_05_14_50_14
+in_genes^/Users/Ron/Desktop/GeneSetEnrichment_General/GSVA/GSVApy/example_data/all.Tattersall_exp2_l2tpmSomeFiltrationAttempts.txt
+in_genesets^/Users/Ron/Desktop/GeneSetEnrichment_General/GSVA/GSVApy/gene_sets/c5.bp.v7.1.symbols.gmt
+num_genes_required^3
+num_top_genes_from_in_genes^200
+debug^False
+start_time_secs^1683316214.0
+pretty_start_time^2023_05_05_14_50_14
+addl_logfile^/Users/Ron/Desktop/GeneSetEnrichment_General/GSVA/GSVApy/outTrimmedGeneSets/2023_05_05_14_50_14/addl_log/addl_log_2023_05_05_14_50_14_.txt
+parms_logfile^/Users/Ron/Desktop/GeneSetEnrichment_General/GSVA/GSVApy/outTrimmedGeneSets/2023_05_05_14_50_14/parms_log/parms_log_2023_05_05_14_50_14_.txt
+script_logfile^/Users/Ron/Desktop/GeneSetEnrichment_General/GSVA/GSVApy/outTrimmedGeneSets/2023_05_05_14_50_14/script_log/script_log_2023_05_05_14_50_14_.txt
+pkgs_logfile^/Users/Ron/Desktop/GeneSetEnrichment_General/GSVA/GSVApy/outTrimmedGeneSets/2023_05_05_14_50_14/pkgs_log/pkgs_log_2023_05_05_14_50_14_.txt
