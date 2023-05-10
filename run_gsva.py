@@ -10,7 +10,7 @@ import rpy2.robjects as ro
 import numpy as np
 
 
-def run_GSVA(df_expr, gene_set_to_genes, distr='Gaussian'):
+def run_GSVA(df_expr, gene_set_to_genes, distr="Gaussian"):
     """
     Parameters
     ----------
@@ -57,7 +57,9 @@ def run_GSVA(df_expr, gene_set_to_genes, distr='Gaussian'):
             df <- data.frame(res)
             df
         }}
-    """.format(distr)
+    """.format(
+        distr
+    )
 
     # Run the R code
     # import pdb
@@ -76,9 +78,11 @@ def run_GSVA(df_expr, gene_set_to_genes, distr='Gaussian'):
 
 def _parse_gene_sets(gene_sets_f):
     gene_set_to_genes = {}
-    with open(gene_sets_f, 'r') as f:
+    with open(gene_sets_f, "r") as f:
         for line in f:
-            toks = line.strip().split('\t')  # rms, added the .strip() to get rid of last \n
+            toks = line.strip().split(
+                "\t"
+            )  # rms, added the .strip() to get rid of last \n
             gene_set = toks[0]
             genes = toks[2:]
             gene_set_to_genes[gene_set] = genes
@@ -88,8 +92,14 @@ def _parse_gene_sets(gene_sets_f):
 def main():
     usage = "python run_gsva.py <input_expression_data> <input_GMT_gene_set_file>"
     parser = OptionParser(usage=usage)
-    parser.add_option("-t", "--transpose", action="store_true", help="Take transpose of input")
-    parser.add_option("-d", "--distribution", help="Distribution to use in GSVA {'Poisson' or 'Gaussian'}")
+    parser.add_option(
+        "-t", "--transpose", action="store_true", help="Take transpose of input"
+    )
+    parser.add_option(
+        "-d",
+        "--distribution",
+        help="Distribution to use in GSVA {'Poisson' or 'Gaussian'}",
+    )
     parser.add_option("-o", "--out_file", help="Output file")
     (options, args) = parser.parse_args()
 
@@ -97,16 +107,22 @@ def main():
     gene_sets_f = args[1]
 
     if options.distribution is None:
-        print("Warning! No distribution was specified (see the '--distribution' flag). Using 'Guassian' by default.")
-        distr = 'Gaussian'
+        print(
+            "Warning! No distribution was specified (see the '--distribution' flag). Using 'Guassian' by default."
+        )
+        distr = "Gaussian"
     else:
         distr = options.distribution
-        assert distr in {'Poisson', 'Gaussian'}, f"The `--distribution` argument must be either 'Poisson' or 'Gaussian'. '{distr}' is invalid."
+        assert distr in {
+            "Poisson",
+            "Gaussian",
+        }, f"The `--distribution` argument must be either 'Poisson' or 'Gaussian'. \
+            '{distr}' is invalid."
     out_f = options.out_file
 
     gene_set_to_genes = _parse_gene_sets(gene_sets_f)
 
-    df = pd.read_csv(data_f, sep='\t', index_col=0)
+    df = pd.read_csv(data_f, sep="\t", index_col=0)
     if options.transpose:
         df = df.transpose()
 
@@ -127,7 +143,7 @@ def main():
         frames.append(perm_df)
 
     all_dfs = pd.concat(frames)
-    all_dfs.to_csv(out_f, sep='\t')
+    all_dfs.to_csv(out_f, sep="\t")
 
 
 if __name__ == "__main__":
