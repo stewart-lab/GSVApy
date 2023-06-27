@@ -194,25 +194,27 @@ def main():
             )
             for i, term in enumerate(stat_dict.keys()):
                 adj_empir_pval_dict[term] = "{:.4f}".format(adj_empir_pvals[i])
-        for term in stat_dict.keys():
-            if (
-                pval_dict[term] < 1.1
-            ):  # Used to be < 0.05, now, let's let them all through.
-                if permute:
-                    if shuffle_labels:
-                        out_mw.write(
-                            f"{term}\t{stat_dict[term]}\t{pval_dict[term]}\t{adj_pval_dict[term]} \
-                            \t{empir_pvals[term]}\t{adj_empir_pval_dict[term]}\n"
-                        )
-                    else:
-                        out_mw.write(
-                            f"{term}\t{stat_dict[term]}\t{pval_dict[term]}\t{adj_pval_dict[term]} \
-                            \t{empir_pvals[term]}\t{adj_empir_pval_dict[term]}\n"
-                        )
+        # sort the adj_pval_dict by the adjusted p-value
+        adj_pval_dict = OrderedDict(sorted(adj_pval_dict.items(), key=lambda x:x[1]))
+        # sort the adj_empir_pval_dict by the adjusted p-value
+        adj_empir_pval_dict = OrderedDict(sorted(adj_empir_pval_dict.items(), key=lambda x:x[1]))
+        if permute:
+            for term in adj_empir_pval_dict.keys():
+                if shuffle_labels:
+                    out_mw.write(
+                        f"{term}\t{stat_dict[term]}\t{pval_dict[term]}\t{adj_pval_dict[term]} \
+                        \t{empir_pvals[term]}\t{adj_empir_pval_dict[term]}\n"
+                    )
                 else:
                     out_mw.write(
-                        f"{term}\t{stat_dict[term]}\t{pval_dict[term]}\t{adj_pval_dict[term]}\n"
+                        f"{term}\t{stat_dict[term]}\t{pval_dict[term]}\t{adj_pval_dict[term]} \
+                            \t{empir_pvals[term]}\t{adj_empir_pval_dict[term]}\n"
                     )
+        else:
+            for term in adj_pval_dict.keys():
+                out_mw.write(
+                    f"{term}\t{stat_dict[term]}\t{pval_dict[term]}\t{adj_pval_dict[term]}\n"
+            )
     cmdlogtime.end(logfile, start_time_secs)
 
 
